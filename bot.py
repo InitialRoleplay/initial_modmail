@@ -98,6 +98,19 @@ class ModmailBot(commands.Bot):
 
         self.startup()
 
+    async def helpMessage(self):
+        try:
+            channel = self.get_channel(int(1237405247308173362))
+            await channel.purge(limit=100)
+            embed = discord.Embed(
+                author="Powered by Codexis",
+                description="Bienvenue, je suis le bot de gestion des tickets de Initial Rolplay. Pour ouvrir un ticket, veuillez m'envoyer un message privé.",
+                color="#FF0000",
+            )
+            channel.send(embed=embed)
+        except Exception:
+            logger.exception("Failed to send first message %s.", cog)
+
     def get_guild_icon(
         self, guild: typing.Optional[discord.Guild], *, size: typing.Optional[int] = None
     ) -> str:
@@ -634,6 +647,7 @@ class ModmailBot(commands.Bot):
 
         self.autoupdate.start()
         self.log_expiry.start()
+        await self.helpMessage()
         self._started = True
 
     async def convert_emoji(self, name: str) -> str:
