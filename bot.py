@@ -107,7 +107,7 @@ class ModmailBot(commands.Bot):
                 description="Bienvenue, je suis le bot de gestion des tickets de Initial Rolplay. Pour ouvrir un ticket, veuillez m'envoyer un message privé.",
                 color="#FF0000",
             )
-            channel.send(embed=embed)
+            await channel.send(embed=embed)
         except Exception:
             logger.exception("Failed to send first message %s.", cog)
 
